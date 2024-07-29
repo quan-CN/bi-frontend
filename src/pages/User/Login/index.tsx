@@ -43,20 +43,6 @@ const useStyles = createStyles(({ token }) => {
     },
   };
 });
-// const ActionIcons = () => {
-//   const { styles } = useStyles();
-//   return (
-//     <>
-//       <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.action} />
-//       <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.action} />
-//       <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.action} />
-//     </>
-//   );
-// };
-const Lang = () => {
-  const { styles } = useStyles();
-  return;
-};
 const Login: React.FC = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
@@ -70,13 +56,16 @@ const Login: React.FC = () => {
       });
       const defaultLoginSuccessMessage = '登录成功！';
       message.success(defaultLoginSuccessMessage);
+
+      const urlParams = new URL(window.location.href).searchParams;
+      setTimeout(() => {
+        history.push(urlParams.get('redirect') || '/');
+      }, 100);
       // 保存已登录用户信息
       setInitialState({
         ...initialState,
         currentUser: res.data,
       });
-      const urlParams = new URL(window.location.href).searchParams;
-      history.push(urlParams.get('redirect') || '/');
       return;
       // 如果失败去设置用户错误信息
     } catch (error: any) {

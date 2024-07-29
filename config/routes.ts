@@ -1,10 +1,15 @@
 export default [
+
   {
     path: '/user',
     layout: false,
     routes: [{ name: '登录', path: '/user/login', component: './User/Login' }],
   },
   { path: '/welcome', name: '欢迎', icon: 'smile', component: './Welcome' },
+
+  { path: '/my_chart', name: '我的图表', icon: 'smile', component: './Chart/Mychart' },
+  { path: '/me', name: '个人中心', icon: 'smile', component: './User/Details' },
+
   {
     path: '/admin',
     name: '管理页',
@@ -17,5 +22,6 @@ export default [
     ],
   },
   { path: '/', redirect: '/welcome' },
+
   { path: '*', layout: false, component: './404' },
 ];

@@ -1,7 +1,54 @@
 declare namespace API {
+  type addChartAsyncMqUsingPOSTParams = {
+    chartName?: string;
+    chartType?: string;
+    goal?: string;
+  };
+
+  type addChartAsyncUsingPOSTParams = {
+    chartName?: string;
+    chartType?: string;
+    goal?: string;
+  };
+
+  type addChartSSeUsingPOSTParams = {
+    chartName?: string;
+    chartType?: string;
+    goal?: string;
+  };
+
+  type addChartUsingPOSTParams = {
+    chartName?: string;
+    chartType?: string;
+    goal?: string;
+  };
+
+  type addQueueUsingGETParams = {
+    /** name */
+    name?: string;
+  };
+
   type BaseResponseBoolean_ = {
     code?: number;
     data?: boolean;
+    message?: string;
+  };
+
+  type BaseResponseChartVO_ = {
+    code?: number;
+    data?: ChartVO;
+    message?: string;
+  };
+
+  type BaseResponseGenChartResult_ = {
+    code?: number;
+    data?: genChartResult;
+    message?: string;
+  };
+
+  type BaseResponseGroupVO_ = {
+    code?: number;
+    data?: GroupVO;
     message?: string;
   };
 
@@ -20,6 +67,30 @@ declare namespace API {
   type BaseResponseLong_ = {
     code?: number;
     data?: number;
+    message?: string;
+  };
+
+  type BaseResponsePageChart_ = {
+    code?: number;
+    data?: PageChart_;
+    message?: string;
+  };
+
+  type BaseResponsePageChartVO_ = {
+    code?: number;
+    data?: PageChartVO_;
+    message?: string;
+  };
+
+  type BaseResponsePageGroup_ = {
+    code?: number;
+    data?: PageGroup_;
+    message?: string;
+  };
+
+  type BaseResponsePageGroupVO_ = {
+    code?: number;
+    data?: PageGroupVO_;
     message?: string;
   };
 
@@ -71,6 +142,72 @@ declare namespace API {
     message?: string;
   };
 
+  type Chart = {
+    chartData?: string;
+    chartName?: string;
+    chartType?: string;
+    createTime?: string;
+    execMessage?: string;
+    genChart?: string;
+    genResult?: string;
+    goal?: string;
+    id?: number;
+    isDelete?: number;
+    status?: string;
+    updateTime?: string;
+    userId?: number;
+  };
+
+  type ChartEditRequest = {
+    chartData?: string;
+    chartName?: string;
+    chartType?: string;
+    genChart?: string;
+    goal?: string;
+    id?: number;
+  };
+
+  type ChartQueryRequest = {
+    chartData?: string;
+    chartName?: string;
+    chartType?: string;
+    current?: number;
+    genChart?: string;
+    genResult?: string;
+    goal?: string;
+    id?: number;
+    pageSize?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
+  };
+
+  type ChartUpdateRequest = {
+    chartData?: string;
+    chartName?: string;
+    chartType?: string;
+    genChart?: string;
+    genResult?: string;
+    goal?: string;
+    id?: number;
+  };
+
+  type ChartVO = {
+    chartData?: string;
+    chartName?: string;
+    chartType?: string;
+    createTime?: string;
+    execMessage?: string;
+    genChart?: string;
+    genResult?: string;
+    goal?: string;
+    id?: number;
+    status?: string;
+    user?: UserVO;
+    userId?: number;
+  };
+
   type checkUsingGETParams = {
     /** echostr */
     echostr?: string;
@@ -83,6 +220,22 @@ declare namespace API {
   };
 
   type DeleteRequest = {
+    id?: number;
+  };
+
+  type genChartResult = {
+    chartId?: number;
+    genChart?: string;
+    genResult?: string;
+  };
+
+  type getChartVOByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
+  type getGroupVOByIdUsingGETParams = {
+    /** id */
     id?: number;
   };
 
@@ -101,12 +254,82 @@ declare namespace API {
     id?: number;
   };
 
+  type Group = {
+    createTime?: string;
+    groupAdminId?: number;
+    groupAvatar?: string;
+    groupName?: string;
+    groupProfile?: string;
+    groupStatus?: string;
+    id?: number;
+    isDelete?: number;
+    updateTime?: string;
+  };
+
+  type GroupAddRequest = {
+    groupAdminId?: number;
+    groupAvatar?: string;
+    groupName?: string;
+    groupProfile?: string;
+    groupStatus?: string;
+  };
+
+  type GroupEditRequest = {
+    groupAdminId?: number;
+    groupAvatar?: string;
+    groupName?: string;
+    groupProfile?: string;
+    groupStatus?: string;
+    id?: number;
+  };
+
+  type GroupJoinRequest = {
+    groupId?: number;
+  };
+
+  type GroupLeaveRequest = {
+    groupId?: number;
+  };
+
+  type GroupQueryRequest = {
+    current?: number;
+    groupAdminId?: number;
+    groupName?: string;
+    groupProfile?: string;
+    groupStatus?: string;
+    id?: number;
+    pageSize?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+  };
+
+  type GroupUpdateRequest = {
+    groupAdminId?: number;
+    groupAvatar?: string;
+    groupName?: string;
+    groupProfile?: string;
+    groupStatus?: string;
+    id?: number;
+  };
+
+  type GroupVO = {
+    createTime?: string;
+    groupAdmin?: string;
+    groupAvatar?: string;
+    groupName?: string;
+    groupProfile?: string;
+    groupStatus?: string;
+    id?: number;
+  };
+
   type LoginUserVO = {
     createTime?: string;
     id?: number;
     updateTime?: string;
     userAccount?: string;
     userAvatar?: string;
+    userPassword?: string;
     userProfile?: string;
     userRole?: string;
   };
@@ -114,6 +337,58 @@ declare namespace API {
   type OrderItem = {
     asc?: boolean;
     column?: string;
+  };
+
+  type PageChart_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: Chart[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageChartVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: ChartVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageGroup_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: Group[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageGroupVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: GroupVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
   };
 
   type PagePost_ = {
@@ -168,6 +443,14 @@ declare namespace API {
     total?: number;
   };
 
+  type PointsUpdateRequest = {
+    count?: number;
+    expire?: string;
+    id?: number;
+    pointType?: string;
+    used?: number;
+  };
+
   type Post = {
     content?: string;
     createTime?: string;
@@ -202,7 +485,6 @@ declare namespace API {
     current?: number;
     pageSize?: number;
     postQueryRequest?: PostQueryRequest;
-    searchText?: string;
     sortField?: string;
     sortOrder?: string;
     userId?: number;
@@ -250,6 +532,10 @@ declare namespace API {
     userId?: number;
   };
 
+  type SseEmitter = {
+    timeout?: number;
+  };
+
   type uploadFileUsingPOSTParams = {
     biz?: string;
   };
@@ -289,7 +575,6 @@ declare namespace API {
     id?: number;
     mpOpenId?: string;
     pageSize?: number;
-    searchText?: string;
     sortField?: string;
     sortOrder?: string;
     unionId?: string;
@@ -307,6 +592,7 @@ declare namespace API {
   type UserUpdateMyRequest = {
     userAccount?: string;
     userAvatar?: string;
+    userPassword?: string;
     userProfile?: string;
   };
 

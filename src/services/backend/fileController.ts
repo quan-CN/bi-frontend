@@ -42,3 +42,11 @@ export async function uploadFileUsingPost(
     ...(options || {}),
   });
 }
+
+/** FormUploadFile POST /api/file/upload/form */
+export async function formUploadFileUsingPost(options?: { [key: string]: any }) {
+  return request<API.BaseResponseString_>('/api/file/upload/form', {
+    method: 'POST',
+    ...(options || {}),
+  });
+}

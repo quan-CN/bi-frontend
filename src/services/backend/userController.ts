@@ -150,6 +150,14 @@ export async function userRegisterUsingPost(
   });
 }
 
+/** userSignIn POST /api/user/signIn */
+export async function userSignInUsingPost(options?: { [key: string]: any }) {
+  return request<API.BaseResponseBoolean_>('/api/user/signIn', {
+    method: 'POST',
+    ...(options || {}),
+  });
+}
+
 /** updateUser POST /api/user/update */
 export async function updateUserUsingPost(
   body: API.UserUpdateRequest,
